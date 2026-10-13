@@ -1,5 +1,9 @@
 # PROJECT 10: AI Digital Twin — Aerospace Broadcast Studio
 
+<p align="center">
+  <img src="assets/banner.png" alt="PROJECT 10: Live Human Host Nikhil & Simli AI Guest Broadcast Studio" width="100%" style="border-radius: 8px;">
+</p>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com)
