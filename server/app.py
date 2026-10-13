@@ -148,10 +148,12 @@ async def upload_avatar_video(file: UploadFile = File(...)):
 
 
 @app.get("/api/status")
+@app.get("/api/health")
 async def get_status():
     cfg = get_current_avatar_config()
     return {
         "status": "online",
+        "service": "Project 10 Aerospace Broadcast Studio",
         "avatar_type": "living_video",
         "visual_source": cfg.get("media_assets", {}).get("visual_source", "/api/video/avatar_video.mp4"),
         "brain_history_turns": len(brain.history) // 2,
