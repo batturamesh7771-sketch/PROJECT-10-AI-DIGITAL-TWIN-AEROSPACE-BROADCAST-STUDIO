@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI in Aerospace Industry | Nikhil & Simli AI Guest Live Broadcast</title>
+  <link rel="stylesheet" href="/static/css/studio.css">
+</head>
+<body>
+
+  <!-- ================= TOP MASTER BROADCAST BAR ================= -->
+  <header class="master-header">
+    <div class="header-left">
+      <div id="broadcastBadge" class="broadcast-badge standby">
+        <span class="badge-dot"></span>
+        <span id="badgeText">STANDBY</span>
+      </div>
+      <div class="show-title-group">
+        <h1>AI in Aerospace Industry | Broadcast Studio</h1>
+        <p>Host: Nikhil (Live from India) • Guest: Simli Neural Avatar • Powered by Gemini 2.5 Pro</p>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div id="timerDisplay" class="timer-box">00:00:00</div>
+    </div>
+
+    <div class="header-right">
+      <!-- Dedicated Direct Talk to Simli Button -->
+      <button id="btnTalkSimliDirect" class="btn" style="background: linear-gradient(135deg, #06b6d4, #0284c7); color: #fff; font-weight: 700; box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        TALK TO SIMLI AVATAR
+      </button>
+
+      <button id="btnRecord" class="btn btn-record">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+        Start Broadcast Recording
+      </button>
+      <button id="btnStop" class="btn btn-stop" style="display: none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+        Stop & Save Episode
+      </button>
+      <button id="btnExportTranscript" class="btn btn-secondary">
+        Export Transcript
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= MAIN STAGE: 50/50 DUAL BROADCAST ================= -->
+  <main class="stage-container">
+    <!-- LEFT PANEL: HOST NIKHIL (LIVE WEBCAM) -->
+    <section class="stream-card">
+      <div class="card-topbar">
+        <div class="speaker-tag tag-host">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          HUMAN HOST
+        </div>
+        <div id="hostStatusPill" class="status-pill">Camera & Laptop Mic Active</div>
+      </div>
+
+      <div class="video-viewport">
+        <video id="hostVideo" class="video-element host-mirror" autoplay playsinline muted></video>
+
+        <!-- Lower Third -->
+        <div class="lower-third">
+          <div class="lower-third-bar host-bar"></div>
+          <div class="lower-third-text">
+            <div class="name">
+              Nikhil
+              <span class="lower-third-badge">LIVE (INDIA)</span>
+            </div>
+            <div class="title">Host • Real Human Researcher</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="vu-meter-container">
+          <span class="vu-label">LAPTOP MIC</span>
+          <div class="vu-track">
+            <div id="hostVuBar" class="vu-bar"></div>
+          </div>
+        </div>
+        <div class="control-btn-group">
+          <button id="btnMuteMic" class="icon-btn">Mute Mic</button>
+          <button id="btnToggleCam" class="icon-btn">Cam Off</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: SIMLI AI GUEST (PRIMARY) WITH FEATURE SWITCH -->
+    <section class="stream-card">
+      <div class="card-topbar">
+        <div class="speaker-tag tag-guest">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
+          AI GUEST STAGE
+        </div>
+
+        <!-- Feature Switch: Simli Avatar (Primary) vs Nikhil Clone (Optional) -->
+        <div class="avatar-feature-switch">
+          <button id="tabSimliAvatar" class="mode-tab active" title="Simli Neural Cloud Avatar (Primary Guest)">
+            Simli Avatar (Guest)
+          </button>
+          <button id="tabNikhilTwin" class="mode-tab" title="Nikhil AI Digital Twin (Optional)">
+            Nikhil Clone (Optional)
+          </button>
+        </div>
+      </div>
+
+      <div class="video-viewport">
+        <!-- SIMLI NEURAL CLOUD AVATAR (Interactive WebRTC Room - NO OVERLAP) -->
+        <div id="simliAvatarContainer" style="width: 100%; height: 100%; position: relative;">
+          <iframe
+            id="simliIframe"
+            class="simli-iframe"
+            src="https://app.simli.com/session/0655685c-c0ab-41af-95ed-2adbc4def4a2/gAAAAABqzkxnL6dT6XyeL0_s2MY-5kx-kOpROi3kClV55gvI7SjOs25zz7kwrKTMOSdBTSTZfdgsFV7tidfVS0qAiHHXHRGeii9Tt3r0b7ZzN62gzTzoL0oVl8-qK3-xiag8edw3vufDHK_JDGVYNT9QTWwdcdKTv8xJrEXkgIXm5kOvK5GjE0Tre2uOYktHlHPH04Gp9GNPFit4ainLNpHrzU_7CnUH5mkDjlc3mPbQRY2d4jbAmuh_YrVeDHg_vb77I6jbD8ShCmKxln0Lv-vH4XSabJKhxE2hWf1TtXSBdhGAmNsU5bZVKrC50vYU_qLmtrawS6L1mqK9unnRS_QAcyv0mHeGbVPmRnk7fKJdWPD7PzUagHMRl0oT27UQCm1_TNsva4-W7GFPEsBSqyBvobSqp7gpnhHMU_G6kp_Qy3acKu_V3DlpxxAlh5xZfU0JXm-1kvtT"
+            allow="camera; microphone; autoplay; display-capture; clipboard-write;"
+          ></iframe>
+        </div>
+
+        <!-- NIKHIL'S AI DIGITAL TWIN CANVAS (OPTIONAL) -->
+        <canvas id="guestCanvas" class="video-element" style="display: none;"></canvas>
+
+        <!-- Lower Third -->
+        <div class="lower-third">
+          <div class="lower-third-bar guest-bar"></div>
+          <div class="lower-third-text">
+            <div id="guestLowerThirdName" class="name">
+              Simli AI Guest
+              <span id="guestBadge" class="lower-third-badge">GEMINI 2.5 PRO</span>
+            </div>
+            <div id="guestLowerThirdTitle" class="title">Face ID: 0655685c • Live WebRTC Stream • Zero Audio Overlap</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="vu-meter-container">
+          <span class="vu-label">AI AUDIO</span>
+          <div class="vu-track">
+            <div id="guestVuBar" class="vu-bar"></div>
+          </div>
+        </div>
+        <div class="control-btn-group">
+          <button id="btnReloadSimli" class="icon-btn" title="Reload Simli WebRTC Session">
+            Reload Simli Stream
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= BOTTOM AEROSPACE STUDIO DOCK ================= -->
+  <footer class="studio-dock">
+    <!-- Real-time Dialogue / Status Ticker -->
+    <div class="live-captions-box">
+      <span class="captions-prefix">SIMLI GUEST FEED:</span>
+      <span id="liveCaptions">Simli WebRTC room connected. Click "TALK TO SIMLI AVATAR" to speak directly through your laptop mic!</span>
+    </div>
+
+    <!-- Controls Row -->
+    <div class="dock-controls-row">
+      <!-- Dedicated Laptop Mic Push-to-Talk Button -->
+      <button id="btnLaptopMic" class="btn-mic-ask" title="Use laptop microphone to speak directly to the AI Avatar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+        <span id="micButtonText">Click to Speak to Simli Avatar</span>
+      </button>
+
+      <div class="prompt-input-container">
+        <input
+          id="promptInput"
+          type="text"
+          class="prompt-input"
+          placeholder="Type an unscripted question for Simli Avatar (Powered by Gemini 2.5 Pro)..."
+        />
+        <button id="btnSendPrompt" class="btn btn-secondary">Send Question</button>
+      </div>
+
+      <!-- Quick Aerospace Topic Chips -->
+      <div class="quick-topic-bar">
+        <button class="topic-chip" data-topic="How does Gemini 2.5 Pro solve Navier-Stokes turbulence modeling in hypersonic flight?">
+          Gemini 2.5 Pro Hypersonics
+        </button>
+        <button class="topic-chip" data-topic="Explain full-flow staged combustion turbopump telemetry anomaly prediction.">
+          Raptor Turbopump Telemetry
+        </button>
+        <button class="topic-chip" data-topic="How do satellite constellations achieve autonomous orbital collision avoidance?">
+          Autonomous Conjunction Avoidance
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Telemetry Status Row -->
+    <div class="telemetry-row">
+      <div class="telemetry-item">
+        <span>SESSION TURNS:</span>
+        <span id="statTurns" class="telemetry-val">0</span>
+      </div>
+      <div class="telemetry-item">
+        <span>AI GUEST AVATAR:</span>
+        <span id="statAvatar" class="telemetry-val">Simli Neural Cloud (Face ID: 0655685c)</span>
+      </div>
+      <div class="telemetry-item">
+        <span>NEURAL BRAIN:</span>
+        <span id="statModel" class="telemetry-val">Gemini 2.5 Pro Active</span>
+      </div>
+      <div class="telemetry-item">
+        <span>AUDIO STREAM:</span>
+        <span id="statAudio" class="telemetry-val">Simli WebRTC Direct (Zero Overlap)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/static/js/host_media.js"></script>
+  <script src="/static/js/avatar_webrtc.js"></script>
+  <script src="/static/js/audio_mixer.js"></script>
+  <script src="/static/js/master_recorder.js"></script>
+  <script src="/static/js/vad_stt.js"></script>
+
+  <!-- Broadcast Orchestration Controller -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const SIMLI_SESSION_URL = "https://app.simli.com/session/0655685c-c0ab-41af-95ed-2adbc4def4a2/gAAAAABqzkxnL6dT6XyeL0_s2MY-5kx-kOpROi3kClV55gvI7SjOs25zz7kwrKTMOSdBTSTZfdgsFV7tidfVS0qAiHHXHRGeii9Tt3r0b7ZzN62gzTzoL0oVl8-qK3-xiag8edw3vufDHK_JDGVYNT9QTWwdcdKTv8xJrEXkgIXm5kOvK5GjE0Tre2uOYktHlHPH04Gp9GNPFit4ainLNpHrzU_7CnUH5mkDjlc3mPbQRY2d4jbAmuh_YrVeDHg_vb77I6jbD8ShCmKxln0Lv-vH4XSabJKhxE2hWf1TtXSBdhGAmNsU5bZVKrC50vYU_qLmtrawS6L1mqK9unnRS_QAcyv0mHeGbVPmRnk7fKJdWPD7PzUagHMRl0oT27UQCm1_TNsva4-W7GFPEsBSqyBvobSqp7gpnhHMU_G6kp_Qy3acKu_V3DlpxxAlh5xZfU0JXm-1kvtT";
+
+      // 1. Initialize Subsystems
+      const hostMedia = new HostMediaManager("hostVideo", "hostVuBar");
+      await hostMedia.init();
+
+      const naturalAvatar = new NaturalAvatarController("guestCanvas", "guestVuBar");
+
+      let recorder = null;
+      let sessionStartTime = null;
+      let timerInterval = null;
+      let turnCount = 0;
+      let currentAvatarMode = "simli"; // 'simli' (default) or 'nikhil'
+
+      // 2. UI Elements
+      const btnRecord = document.getElementById("btnRecord");
+      const btnStop = document.getElementById("btnStop");
+      const btnExportTranscript = document.getElementById("btnExportTranscript");
+      const broadcastBadge = document.getElementById("broadcastBadge");
+      const badgeText = document.getElementById("badgeText");
+      const timerDisplay = document.getElementById("timerDisplay");
+      const liveCaptions = document.getElementById("liveCaptions");
+      const promptInput = document.getElementById("promptInput");
+      const btnSendPrompt = document.getElementById("btnSendPrompt");
+      const statTurns = document.getElementById("statTurns");
+      const statAvatar = document.getElementById("statAvatar");
+      const statAudio = document.getElementById("statAudio");
+      const btnMuteMic = document.getElementById("btnMuteMic");
+      const btnToggleCam = document.getElementById("btnToggleCam");
+      const tabSimliAvatar = document.getElementById("tabSimliAvatar");
+      const tabNikhilTwin = document.getElementById("tabNikhilTwin");
+      const simliAvatarContainer = document.getElementById("simliAvatarContainer");
+      const simliIframe = document.getElementById("simliIframe");
+      const guestCanvas = document.getElementById("guestCanvas");
+      const guestLowerThirdName = document.getElementById("guestLowerThirdName");
+      const guestLowerThirdTitle = document.getElementById("guestLowerThirdTitle");
+      const btnReloadSimli = document.getElementById("btnReloadSimli");
+      const btnLaptopMic = document.getElementById("btnLaptopMic");
+      const micButtonText = document.getElementById("micButtonText");
+      const btnTalkSimliDirect = document.getElementById("btnTalkSimliDirect");
+
+      // 3. Feature Switch: Simli (Primary) vs Nikhil Clone (Optional)
+      function setAvatarMode(mode) {
+        currentAvatarMode = mode;
+        if (mode === "simli") {
+          tabSimliAvatar.classList.add("active");
+          tabNikhilTwin.classList.remove("active");
+          simliAvatarContainer.style.display = "block";
+          guestCanvas.style.display = "none";
+          guestLowerThirdName.innerHTML = `Simli AI Guest <span class="lower-third-badge">GEMINI 2.5 PRO</span>`;
+          guestLowerThirdTitle.textContent = "Face ID: 0655685c • Live WebRTC Stream • Zero Audio Overlap";
+          statAvatar.textContent = "Simli Neural Cloud (Face ID: 0655685c)";
+          statAudio.textContent = "Simli WebRTC Direct (Zero Overlap)";
+          liveCaptions.textContent = "Active Guest: Simli Avatar. Talk directly through laptop mic!";
+        } else {
+          tabNikhilTwin.classList.add("active");
+          tabSimliAvatar.classList.remove("active");
+          simliAvatarContainer.style.display = "none";
+          guestCanvas.style.display = "block";
+          guestLowerThirdName.innerHTML = `Nikhil (AI Digital Twin) <span class="lower-third-badge">OPTIONAL CLONE</span>`;
+          guestLowerThirdTitle.textContent = "Aerospace AI Specialist • Indian Timbre • Gemini 2.5 Pro";
+          statAvatar.textContent = "Nikhil Digital Twin (Optional)";
+          statAudio.textContent = "Local Indian Voice Synthesizer";
+          liveCaptions.textContent = "Active Guest: Nikhil Clone (Optional).";
+        }
+      }
+
+      tabSimliAvatar.addEventListener("click", () => setAvatarMode("simli"));
+      tabNikhilTwin.addEventListener("click", () => setAvatarMode("nikhil"));
+
+      btnReloadSimli.addEventListener("click", () => {
+        simliIframe.src = SIMLI_SESSION_URL;
+        liveCaptions.textContent = "Reloading Simli WebRTC session...";
+      });
+
+      // 4. Talking Pipeline - ZERO OVERLAP ENFORCED
+      async function executeDialogueTurn(questionText) {
+        if (!questionText || !questionText.trim()) return;
+        const q = questionText.trim();
+
+        liveCaptions.textContent = `Nikhil (Host): "${q}"`;
+        if (recorder) {
+          recorder.setCaptions(`Nikhil: ${q}`);
+          recorder.addDialogueTurn("Nikhil (Host)", q);
+        }
+
+        // When in Simli Mode:
+        // Simli's WebRTC session handles the audio and video directly!
+        // We do NOT play overlapping TTS speech over Simli!
+        if (currentAvatarMode === "simli") {
+          liveCaptions.textContent = `Question sent to Simli Guest: "${q}". Listening to Simli WebRTC stream...`;
+          // Notify iframe or pass query if postMessage supported
+          try {
+            simliIframe.contentWindow.postMessage({ type: "question", text: q }, "*");
+          } catch(e) {}
+          return;
+        }
+
+        // Only in Nikhil Clone Mode: use backend Gemini 2.5 Pro voice synthesis
+        try {
+          const resp = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question: q, provider: "gemini" })
+          });
+
+          const data = await resp.json();
+          if (data.answer) {
+            turnCount = data.turn_count || (turnCount + 1);
+            statTurns.textContent = turnCount;
+
+            liveCaptions.textContent = `AI Guest: "${data.answer}"`;
+            if (recorder) {
+              recorder.setCaptions(`AI Guest: ${data.answer}`);
+              recorder.addDialogueTurn("AI Guest", data.answer);
+            }
+
+            const audioSource = data.audio_base64 || data.audio_url;
+            await naturalAvatar.playSpeech(audioSource, data.duration);
+          }
+        } catch (err) {
+          console.error("Turn failed:", err);
+          liveCaptions.textContent = "Error communicating with AI Guest brain.";
+        }
+      }
+
+      // 5. Dedicated "Talk to Simli Avatar" Button Handler
+      btnTalkSimliDirect.addEventListener("click", () => {
+        setAvatarMode("simli");
+        simliIframe.focus();
+        liveCaptions.textContent = "Simli WebRTC Stream focused. Speak directly into your laptop mic!";
+      });
+
+      // 6. Laptop Mic Handler
+      let isPushToTalkActive = false;
+      const vadSTT = new VoiceActivitySTT({
+        language: 'en-IN',
+        silenceThresholdMs: 1200,
+        onInterim: (text) => {
+          liveCaptions.textContent = `Host Speaking: "${text}"`;
+          if (recorder) recorder.setCaptions(`Host: ${text}`);
+        },
+        onUtterance: (finalText) => {
+          if (isPushToTalkActive) {
+            stopLaptopMicListening();
+          }
+          executeDialogueTurn(finalText);
+        }
+      });
+
+      function startLaptopMicListening() {
+        isPushToTalkActive = true;
+        btnLaptopMic.classList.add("recording");
+        micButtonText.textContent = "Listening... Speak to Simli (Click to Stop)";
+        vadSTT.start();
+      }
+
+      function stopLaptopMicListening() {
+        isPushToTalkActive = false;
+        btnLaptopMic.classList.remove("recording");
+        micButtonText.textContent = "Click to Speak to Simli Avatar";
+        vadSTT.finalizeUtterance();
+      }
+
+      btnLaptopMic.addEventListener("click", () => {
+        if (!isPushToTalkActive) {
+          startLaptopMicListening();
+        } else {
+          stopLaptopMicListening();
+        }
+      });
+
+      // 7. Master Recording Controls
+      btnRecord.addEventListener("click", () => {
+        const hostAudio = hostMedia.getAudioTrack();
+        const guestAudio = naturalAvatar.getAudioTrack();
+        const guestTarget = currentAvatarMode === "nikhil" ? guestCanvas : simliIframe;
+
+        recorder = new MasterBroadcastRecorder(
+          document.getElementById("hostVideo"),
+          guestTarget,
+          hostAudio,
+          guestAudio
+        );
+
+        recorder.start();
+        sessionStartTime = Date.now();
+
+        btnRecord.style.display = "none";
+        btnStop.style.display = "inline-flex";
+        broadcastBadge.className = "broadcast-badge recording";
+        badgeText.textContent = "ON AIR (RECORDING)";
+
+        timerInterval = setInterval(() => {
+          const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
+          const hrs = Math.floor(elapsed / 3600);
+          const mins = Math.floor((elapsed % 3600) / 60);
+          const secs = elapsed % 60;
+          timerDisplay.textContent = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }, 1000);
+      });
+
+      btnStop.addEventListener("click", () => {
+        if (recorder) {
+          recorder.stop();
+        }
+        clearInterval(timerInterval);
+
+        btnRecord.style.display = "inline-flex";
+        btnStop.style.display = "none";
+        broadcastBadge.className = "broadcast-badge standby";
+        badgeText.textContent = "STANDBY";
+      });
+
+      btnExportTranscript.addEventListener("click", () => {
+        if (recorder) {
+          recorder.exportTranscript(Date.now());
+        }
+      });
+
+      // 8. Manual Prompt Submission
+      btnSendPrompt.addEventListener("click", () => {
+        const val = promptInput.value;
+        if (val) {
+          promptInput.value = "";
+          executeDialogueTurn(val);
+        }
+      });
+
+      promptInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          btnSendPrompt.click();
+        }
+      });
+
+      // Quick Topic Chips
+      document.querySelectorAll(".topic-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          const topic = chip.getAttribute("data-topic");
+          executeDialogueTurn(topic);
+        });
+      });
+
+      // Host Media Toggles
+      btnMuteMic.addEventListener("click", () => {
+        const isMuted = hostMedia.toggleMute();
+        btnMuteMic.textContent = isMuted ? "Unmute Mic" : "Mute Mic";
+        btnMuteMic.classList.toggle("muted", isMuted);
+      });
+
+      btnToggleCam.addEventListener("click", () => {
+        const isOff = hostMedia.toggleCamera();
+        btnToggleCam.textContent = isOff ? "Cam On" : "Cam Off";
+        btnToggleCam.classList.toggle("muted", isOff);
+      });
+    });
+  </script>
+</body>
+</html>
