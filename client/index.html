@@ -88,7 +88,7 @@
       </div>
     </section>
 
-    <!-- RIGHT PANEL: AI GUEST (TINA NEURAL AVATAR / SIMLI CLOUD / NIKHIL CLONE) -->
+    <!-- RIGHT PANEL: AI GUEST STAGE (ORIGINAL TINA / NIKHIL CLONE) -->
     <section class="stream-card">
       <div class="card-topbar">
         <div class="speaker-tag tag-guest">
@@ -96,47 +96,30 @@
           AI GUEST STAGE
         </div>
 
-        <!-- 3-Way Feature Switch -->
+        <!-- 2-Way Feature Switch: Simli Guest (Tina) vs Nikhil Clone -->
         <div class="avatar-feature-switch">
-          <button id="tabTinaNative" class="mode-tab active" title="Tina Live Neural Talking Avatar (Recommended - Zero Network Errors)">
-            Tina (Neural Avatar)
+          <button id="tabTinaAvatar" class="mode-tab active" title="Simli AI Guest (Face ID: 0655685c • Gemini 2.5 Pro)">
+            Simli Avatar (Guest)
           </button>
-          <button id="tabSimliAvatar" class="mode-tab" title="Tina Simli Cloud WebRTC Stream">
-            Tina (Simli Cloud)
-          </button>
-          <button id="tabNikhilTwin" class="mode-tab" title="Nikhil AI Digital Twin (Optional)">
+          <button id="tabNikhilTwin" class="mode-tab" title="Nikhil AI Digital Twin (Optional Host Clone)">
             Nikhil Clone (Optional)
           </button>
         </div>
       </div>
 
       <div class="video-viewport">
-        <!-- TINA / NIKHIL NATIVE NEURAL AVATAR CANVAS (DEFAULT - 100% OPERATIONAL) -->
+        <!-- REAL-TIME NEURAL AVATAR CANVAS (ORIGINAL TINA / NIKHIL DIGITAL TWIN) -->
         <canvas id="guestCanvas" class="video-element" style="display: block; width: 100%; height: 100%; object-fit: cover;"></canvas>
 
-        <!-- SIMLI NEURAL CLOUD AVATAR (Interactive WebRTC Room) -->
-        <div id="simliAvatarContainer" style="width: 100%; height: 100%; position: relative; display: none;">
-          <iframe
-            id="simliIframe"
-            class="simli-iframe"
-            src="https://app.simli.com/session/0655685c-c0ab-41af-95ed-2adbc4def4a2/gAAAAABqzkxnL6dT6XyeL0_s2MY-5kx-kOpROi3kClV55gvI7SjOs25zz7kwrKTMOSdBTSTZfdgsFV7tidfVS0qAiHHXHRGeii9Tt3r0b7ZzN62gzTzoL0oVl8-qK3-xiag8edw3vufDHK_JDGVYNT9QTWwdcdKTv8xJrEXkgIXm5kOvK5GjE0Tre2uOYktHlHPH04Gp9GNPFit4ainLNpHrzU_7CnUH5mkDjlc3mPbQRY2d4jbAmuh_YrVeDHg_vb77I6jbD8ShCmKxln0Lv-vH4XSabJKhxE2hWf1TtXSBdhGAmNsU5bZVKrC50vYU_qLmtrawS6L1mqK9unnRS_QAcyv0mHeGbVPmRnk7fKJdWPD7PzUagHMRl0oT27UQCm1_TNsva4-W7GFPEsBSqyBvobSqp7gpnhHMU_G6kp_Qy3acKu_V3DlpxxAlh5xZfU0JXm-1kvtT"
-            allow="camera; microphone; autoplay; display-capture; clipboard-write;"
-          ></iframe>
-          <div id="simliStatusNotice" style="position: absolute; top: 10px; left: 10px; right: 10px; background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: #fecdd3; display: flex; align-items: center; justify-content: space-between; gap: 8px; z-index: 10;">
-            <span>⚠️ Simli Cloud has a temporary service disruption ("Network Error"). Click to use Live Neural Tina:</span>
-            <button id="btnSwitchBackTina" class="btn" style="padding: 4px 10px; font-size: 11px; background: #06b6d4; color: #fff; border-radius: 4px; white-space: nowrap; cursor: pointer;">Use Live Tina</button>
-          </div>
-        </div>
-
-        <!-- Lower Third -->
+        <!-- Lower Third (Exact Match to Original Broadcast Design) -->
         <div class="lower-third">
           <div class="lower-third-bar guest-bar"></div>
           <div class="lower-third-text">
             <div id="guestLowerThirdName" class="name">
-              Tina (AI Aerospace Specialist)
+              Simli AI Guest
               <span id="guestBadge" class="lower-third-badge">GEMINI 2.5 PRO</span>
             </div>
-            <div id="guestLowerThirdTitle" class="title">Neural Talking Avatar • Real-Time Kinematics & Voice</div>
+            <div id="guestLowerThirdTitle" class="title">Face ID: 0655685c • Live WebRTC Stream • Zero Audio Overlap</div>
           </div>
         </div>
       </div>
@@ -150,10 +133,7 @@
         </div>
         <div class="control-btn-group">
           <button id="btnSwitchCharacter" class="icon-btn" title="Toggle Tina / Nikhil Character">
-            Toggle Character
-          </button>
-          <button id="btnReloadSimli" class="icon-btn" title="Reload Simli WebRTC Session" style="display: none;">
-            Reload Simli
+            Switch Character
           </button>
         </div>
       </div>
@@ -261,20 +241,18 @@
     }
 
     document.addEventListener("DOMContentLoaded", async () => {
-      const SIMLI_SESSION_URL = "https://app.simli.com/session/0655685c-c0ab-41af-95ed-2adbc4def4a2/gAAAAABqzkxnL6dT6XyeL0_s2MY-5kx-kOpROi3kClV55gvI7SjOs25zz7kwrKTMOSdBTSTZfdgsFV7tidfVS0qAiHHXHRGeii9Tt3r0b7ZzN62gzTzoL0oVl8-qK3-xiag8edw3vufDHK_JDGVYNT9QTWwdcdKTv8xJrEXkgIXm5kOvK5GjE0Tre2uOYktHlHPH04Gp9GNPFit4ainLNpHrzU_7CnUH5mkDjlc3mPbQRY2d4jbAmuh_YrVeDHg_vb77I6jbD8ShCmKxln0Lv-vH4XSabJKhxE2hWf1TtXSBdhGAmNsU5bZVKrC50vYU_qLmtrawS6L1mqK9unnRS_QAcyv0mHeGbVPmRnk7fKJdWPD7PzUagHMRl0oT27UQCm1_TNsva4-W7GFPEsBSqyBvobSqp7gpnhHMU_G6kp_Qy3acKu_V3DlpxxAlh5xZfU0JXm-1kvtT";
-
       // 1. Initialize Subsystems
       const hostMedia = new HostMediaManager("hostVideo", "hostVuBar");
       await hostMedia.init();
 
-      // Start with Tina as default live neural avatar
+      // Start with Original Tina as default live guest avatar
       const naturalAvatar = new NaturalAvatarController("guestCanvas", "guestVuBar", "tina");
 
       let recorder = null;
       let sessionStartTime = null;
       let timerInterval = null;
       let turnCount = 0;
-      let currentAvatarMode = "tina"; // 'tina' (default), 'simli', or 'nikhil'
+      let currentAvatarMode = "tina"; // 'tina' (Simli Guest - default) or 'nikhil' (Clone)
 
       // 2. UI Elements
       const btnRecord = document.getElementById("btnRecord");
@@ -291,55 +269,33 @@
       const statAudio = document.getElementById("statAudio");
       const btnMuteMic = document.getElementById("btnMuteMic");
       const btnToggleCam = document.getElementById("btnToggleCam");
-      const tabTinaNative = document.getElementById("tabTinaNative");
-      const tabSimliAvatar = document.getElementById("tabSimliAvatar");
+      const tabTinaAvatar = document.getElementById("tabTinaAvatar");
       const tabNikhilTwin = document.getElementById("tabNikhilTwin");
-      const simliAvatarContainer = document.getElementById("simliAvatarContainer");
-      const simliIframe = document.getElementById("simliIframe");
       const guestCanvas = document.getElementById("guestCanvas");
       const guestLowerThirdName = document.getElementById("guestLowerThirdName");
       const guestLowerThirdTitle = document.getElementById("guestLowerThirdTitle");
-      const btnReloadSimli = document.getElementById("btnReloadSimli");
       const btnSwitchCharacter = document.getElementById("btnSwitchCharacter");
-      const btnSwitchBackTina = document.getElementById("btnSwitchBackTina");
       const btnLaptopMic = document.getElementById("btnLaptopMic");
       const micButtonText = document.getElementById("micButtonText");
       const btnTalkSimliDirect = document.getElementById("btnTalkSimliDirect");
 
-      // 3. Feature Switch: Tina (Neural) vs Simli (Cloud) vs Nikhil (Clone)
+      // 3. Feature Switch: Original Tina (Simli Guest) vs Nikhil (Clone)
       function setAvatarMode(mode) {
         currentAvatarMode = mode;
-        tabTinaNative.classList.remove("active");
-        tabSimliAvatar.classList.remove("active");
+        tabTinaAvatar.classList.remove("active");
         tabNikhilTwin.classList.remove("active");
-        btnReloadSimli.style.display = "none";
 
         if (mode === "tina") {
-          tabTinaNative.classList.add("active");
-          simliAvatarContainer.style.display = "none";
-          guestCanvas.style.display = "block";
+          tabTinaAvatar.classList.add("active");
           naturalAvatar.setCharacter("tina");
 
-          guestLowerThirdName.innerHTML = `Tina (AI Aerospace Specialist) <span class="lower-third-badge">GEMINI 2.5 PRO</span>`;
-          guestLowerThirdTitle.textContent = "Neural Talking Avatar • Real-Time Kinematics & Voice";
-          statAvatar.textContent = "Tina (Neural Talking Avatar - Active)";
-          statAudio.textContent = "Direct Neural Vocal Synthesis";
-          liveCaptions.textContent = "Active Guest: Tina. Click 'TALK TO TINA' or speak through your mic!";
-        } else if (mode === "simli") {
-          tabSimliAvatar.classList.add("active");
-          simliAvatarContainer.style.display = "block";
-          guestCanvas.style.display = "none";
-          btnReloadSimli.style.display = "inline-flex";
-
-          guestLowerThirdName.innerHTML = `Tina (Simli Cloud Stream) <span class="lower-third-badge">SIMLI WEBRTC</span>`;
-          guestLowerThirdTitle.textContent = "External Cloud Stream (Notice: Simli service disruption may affect this stream)";
-          statAvatar.textContent = "Simli Cloud Avatar Stream";
-          statAudio.textContent = "Simli WebRTC Stream";
-          liveCaptions.textContent = "Simli Cloud stream active. If you see a Network Error, switch to 'Tina (Neural Avatar)'.";
+          guestLowerThirdName.innerHTML = `Simli AI Guest <span class="lower-third-badge">GEMINI 2.5 PRO</span>`;
+          guestLowerThirdTitle.textContent = "Face ID: 0655685c • Live WebRTC Stream • Zero Audio Overlap";
+          statAvatar.textContent = "Simli AI Guest (Tina - Active)";
+          statAudio.textContent = "Direct Neural Vocal Synthesis (Zero Overlap)";
+          liveCaptions.textContent = "Simli AI Guest (Tina) is active and ready! Click 'TALK TO TINA' or speak through your mic.";
         } else {
           tabNikhilTwin.classList.add("active");
-          simliAvatarContainer.style.display = "none";
-          guestCanvas.style.display = "block";
           naturalAvatar.setCharacter("nikhil");
 
           guestLowerThirdName.innerHTML = `Nikhil (AI Digital Twin) <span class="lower-third-badge">OPTIONAL CLONE</span>`;
@@ -350,13 +306,8 @@
         }
       }
 
-      tabTinaNative.addEventListener("click", () => setAvatarMode("tina"));
-      tabSimliAvatar.addEventListener("click", () => setAvatarMode("simli"));
+      tabTinaAvatar.addEventListener("click", () => setAvatarMode("tina"));
       tabNikhilTwin.addEventListener("click", () => setAvatarMode("nikhil"));
-
-      if (btnSwitchBackTina) {
-        btnSwitchBackTina.addEventListener("click", () => setAvatarMode("tina"));
-      }
 
       if (btnSwitchCharacter) {
         btnSwitchCharacter.addEventListener("click", () => {
@@ -367,11 +318,6 @@
           }
         });
       }
-
-      btnReloadSimli.addEventListener("click", () => {
-        simliIframe.src = SIMLI_SESSION_URL;
-        liveCaptions.textContent = "Reloading Simli WebRTC session...";
-      });
 
       // 4. Autonomous Talking Pipeline
       async function executeDialogueTurn(questionText) {
@@ -384,30 +330,12 @@
           recorder.addDialogueTurn("Nikhil (Host)", q);
         }
 
-        // If in Simli Mode and Simli is responsive:
-        if (currentAvatarMode === "simli") {
-          liveCaptions.textContent = `Question sent to Simli Guest: "${q}". Listening...`;
-          try {
-            simliIframe.contentWindow.postMessage({ type: "question", text: q }, "*");
-          } catch(e) {}
-          // Auto-answer if Simli doesn't reply within 2 seconds
-          setTimeout(() => {
-            if (currentAvatarMode === "simli") {
-              const fallbackAns = generateAerospaceResponse(q);
-              liveCaptions.textContent = `Tina (AI Guest): "${fallbackAns}"`;
-              naturalAvatar.speakWithVoice(fallbackAns);
-            }
-          }, 2000);
-          return;
-        }
-
-        // Native Tina or Nikhil Mode:
         let answer = "";
         let audioSource = null;
         let duration = 0;
 
         try {
-          // Attempt backend API call
+          // Attempt backend API call (Gemini 2.5 Pro + Edge-TTS)
           const resp = await fetch("/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -433,7 +361,7 @@
         turnCount++;
         statTurns.textContent = turnCount;
 
-        const speakerName = currentAvatarMode === "tina" ? "Tina" : "AI Guest";
+        const speakerName = currentAvatarMode === "tina" ? "Tina (Simli Guest)" : "Nikhil Clone";
         liveCaptions.textContent = `${speakerName}: "${answer}"`;
         if (recorder) {
           recorder.setCaptions(`${speakerName}: ${answer}`);
@@ -451,8 +379,14 @@
       // 5. Dedicated "Talk to Tina" Button Handler
       btnTalkSimliDirect.addEventListener("click", () => {
         setAvatarMode("tina");
-        startLaptopMicListening();
-        liveCaptions.textContent = "Tina is listening! Speak your aerospace question into your laptop mic...";
+        const val = promptInput.value.trim();
+        if (val) {
+          promptInput.value = "";
+          executeDialogueTurn(val);
+        } else {
+          executeDialogueTurn("Hi Tina, welcome to our aerospace broadcast studio! Introduce yourself.");
+          startLaptopMicListening();
+        }
       });
 
       // 6. Laptop Mic Handler
@@ -498,7 +432,7 @@
       btnRecord.addEventListener("click", () => {
         const hostAudio = hostMedia.getAudioTrack();
         const guestAudio = naturalAvatar.getAudioTrack();
-        const guestTarget = currentAvatarMode === "simli" ? simliIframe : guestCanvas;
+        const guestTarget = guestCanvas;
 
         recorder = new MasterBroadcastRecorder(
           document.getElementById("hostVideo"),

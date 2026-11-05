@@ -5,7 +5,7 @@
 ### 🌟 [▶ CLICK HERE TO LOAD THE PROJECT & TALK TO TINA 🎙️](https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/)
 
 [![Talk to Tina Live Studio](https://img.shields.io/badge/▶%20CLICK%20HERE%20TO%20LOAD%20PROJECT-TALK%20TO%20TINA-00F2FE?style=for-the-badge&logo=webrtc&logoColor=black)](https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/)
-[![Direct WebRTC Session](https://img.shields.io/badge/⚡%20DIRECT%20SIMLI%20SESSION-TALK%20TO%20TINA-FF0055?style=for-the-badge&logo=googlemeet&logoColor=white)](https://app.simli.com/session/0655685c-c0ab-41af-95ed-2adbc4def4a2/gAAAAABqzkxnL6dT6XyeL0_s2MY-5kx-kOpROi3kClV55gvI7SjOs25zz7kwrKTMOSdBTSTZfdgsFV7tidfVS0qAiHHXHRGeii9Tt3r0b7ZzN62gzTzoL0oVl8-qK3-xiag8edw3vufDHK_JDGVYNT9QTWwdcdKTv8xJrEXkgIXm5kOvK5GjE0Tre2uOYktHlHPH04Gp9GNPFit4ainLNpHrzU_7CnUH5mkDjlc3mPbQRY2d4jbAmuh_YrVeDHg_vb77I6jbD8ShCmKxln0Lv-vH4XSabJKhxE2hWf1TtXSBdhGAmNsU5bZVKrC50vYU_qLmtrawS6L1mqK9unnRS_QAcyv0mHeGbVPmRnk7fKJdWPD7PzUagHMRl0oT27UQCm1_TNsva4-W7GFPEsBSqyBvobSqp7gpnhHMU_G6kp_Qy3acKu_V3DlpxxAlh5xZfU0JXm-1kvtT)
+[![Live Neural Stream](https://img.shields.io/badge/⚡%20LIVE%20NEURAL%20STREAM-TALK%20TO%20TINA-FF0055?style=for-the-badge&logo=googlemeet&logoColor=white)](https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/)
 
 <br/>
 
