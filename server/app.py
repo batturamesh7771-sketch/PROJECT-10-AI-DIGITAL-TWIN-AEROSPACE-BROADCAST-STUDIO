@@ -51,7 +51,11 @@ CONFIG_PATH = os.path.join(ROOT_DIR, "avatar_config.json")
 os.makedirs(RECORDINGS_DIR, exist_ok=True)
 os.makedirs(AUDIO_CACHE_DIR, exist_ok=True)
 
-# Mount client directory for static resources
+# Mount client directory for static resources and direct relative paths
+app.mount("/css", StaticFiles(directory=os.path.join(CLIENT_DIR, "css")), name="css")
+app.mount("/js", StaticFiles(directory=os.path.join(CLIENT_DIR, "js")), name="js")
+app.mount("/assets", StaticFiles(directory=os.path.join(CLIENT_DIR, "assets")), name="client_assets")
+app.mount("/client", StaticFiles(directory=CLIENT_DIR, html=True), name="client")
 app.mount("/static", StaticFiles(directory=CLIENT_DIR), name="static")
 
 active_websockets = set()

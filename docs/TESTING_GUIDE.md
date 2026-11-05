@@ -3,6 +3,7 @@
 **Project Name:** PROJECT 10 — AI Digital Twin: Aerospace Broadcast Studio  
 **Author:** Mr ELONIKHIL (`mr elonikhil`)  
 **License:** MIT License  
+**Permanent Live Web Shell:** [https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/](https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/)  
 **Local Studio URL:** [http://localhost:8000](http://localhost:8000)  
 
 ---

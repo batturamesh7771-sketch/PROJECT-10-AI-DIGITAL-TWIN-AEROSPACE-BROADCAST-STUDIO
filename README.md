@@ -1,8 +1,21 @@
 # PROJECT 10: AI Digital Twin — Aerospace Broadcast Studio
 
-<p align="center">
-  <img src="assets/banner.png" alt="PROJECT 10: Live Human Host Nikhil & Simli AI Guest Broadcast Studio" width="100%" style="border-radius: 8px;">
-</p>
+<div align="center">
+
+### 🌟 [▶ CLICK HERE TO LOAD THE PROJECT & TALK TO TINA 🎙️](https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/)
+
+[![Talk to Tina Live Studio](https://img.shields.io/badge/▶%20CLICK%20HERE%20TO%20LOAD%20PROJECT-TALK%20TO%20TINA-00F2FE?style=for-the-badge&logo=webrtc&logoColor=black)](https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/)
+[![Direct WebRTC Session](https://img.shields.io/badge/⚡%20DIRECT%20SIMLI%20SESSION-TALK%20TO%20TINA-FF0055?style=for-the-badge&logo=googlemeet&logoColor=white)](https://app.simli.com/session/0655685c-c0ab-41af-95ed-2adbc4def4a2/gAAAAABqzkxnL6dT6XyeL0_s2MY-5kx-kOpROi3kClV55gvI7SjOs25zz7kwrKTMOSdBTSTZfdgsFV7tidfVS0qAiHHXHRGeii9Tt3r0b7ZzN62gzTzoL0oVl8-qK3-xiag8edw3vufDHK_JDGVYNT9QTWwdcdKTv8xJrEXkgIXm5kOvK5GjE0Tre2uOYktHlHPH04Gp9GNPFit4ainLNpHrzU_7CnUH5mkDjlc3mPbQRY2d4jbAmuh_YrVeDHg_vb77I6jbD8ShCmKxln0Lv-vH4XSabJKhxE2hWf1TtXSBdhGAmNsU5bZVKrC50vYU_qLmtrawS6L1mqK9unnRS_QAcyv0mHeGbVPmRnk7fKJdWPD7PzUagHMRl0oT27UQCm1_TNsva4-W7GFPEsBSqyBvobSqp7gpnhHMU_G6kp_Qy3acKu_V3DlpxxAlh5xZfU0JXm-1kvtT)
+
+<br/>
+
+<a href="https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/" target="_blank" title="Click here to load the project to talk to Tina">
+  <img src="assets/banner.png" alt="Click to load project to talk to Tina - Project 10 Live Studio" width="100%" style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 242, 254, 0.3);">
+</a>
+
+<p><em>👆 <strong>Click the banner above or the blue button to immediately load the project and talk to Tina!</strong></em></p>
+
+</div>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)](https://python.org)
@@ -150,8 +163,10 @@ python server/app.py
 ```
 
 ### 4. Access Broadcast Studio
-Open your browser to:
-**[http://localhost:8000](http://localhost:8000)**
+- **🌐 Permanent Live Web Shell (Click to Load & Talk to Tina):**  
+  👉 **[https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/](https://batturamesh7771-sketch.github.io/PROJECT-10-AI-DIGITAL-TWIN-AEROSPACE-BROADCAST-STUDIO/)**  
+- **💻 Local Broadcast Server:**  
+  **[http://localhost:8000](http://localhost:8000)**  
 
 1. Grant Camera and Microphone access.
 2. The left stage will stream your live camera and mic VU meter.

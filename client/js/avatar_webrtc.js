@@ -11,7 +11,10 @@ class NaturalAvatarController {
     this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
 
     this.referenceImg = new Image();
-    this.referenceImg.src = "/static/assets/nikhil_twin_reference.png";
+    this.referenceImg.onerror = () => {
+      this.referenceImg.src = "/static/assets/nikhil_twin_reference.png";
+    };
+    this.referenceImg.src = "assets/nikhil_twin_reference.png";
 
     this.isSpeaking = false;
     this.speechStartTime = 0;
