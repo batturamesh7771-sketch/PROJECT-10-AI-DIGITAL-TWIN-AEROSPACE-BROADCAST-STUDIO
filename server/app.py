@@ -198,19 +198,29 @@ async def chat_endpoint(request: Request):
     brain_latency = time.time() - start_t
 
     tts_start = time.time()
-    audio_bytes, visemes = await tts.synthesize_with_visemes(answer)
+    audio_bytes = b""
+    visemes = []
+    try:
+        audio_bytes, visemes = await tts.synthesize_with_visemes(answer)
+    except Exception as e:
+        logger.warning(f"TTS synthesis notice: {e}")
     tts_latency = time.time() - tts_start
 
     word_count = len(answer.split())
     estimated_duration = max(2.5, word_count / 2.6)
 
-    audio_id = f"speech_{int(time.time())}_{uuid.uuid4().hex[:6]}.mp3"
-    audio_path = os.path.join(AUDIO_CACHE_DIR, audio_id)
-    with open(audio_path, "wb") as f:
-        f.write(audio_bytes)
+    audio_b64 = ""
+    if audio_bytes:
+        try:
+            audio_id = f"speech_{int(time.time())}_{uuid.uuid4().hex[:6]}.mp3"
+            audio_path = os.path.join(AUDIO_CACHE_DIR, audio_id)
+            with open(audio_path, "wb") as f:
+                f.write(audio_bytes)
+            audio_b64 = base64.b64encode(audio_bytes).decode("utf-8")
+        except Exception as e:
+            logger.warning(f"Audio cache write notice: {e}")
 
     avatar_streamer.trigger_speech(estimated_duration)
-    audio_b64 = base64.b64encode(audio_bytes).decode("utf-8")
 
     broadcast_payload = {
         "type": "turn_event",

@@ -62,15 +62,18 @@ class VoiceCloningEngine:
         audio_buffer = io.BytesIO()
         viseme_events = []
 
-        async for chunk in communicate.stream():
-            if chunk["type"] == "audio":
-                audio_buffer.write(chunk["data"])
-            elif chunk["type"] == "WordBoundary":
-                viseme_events.append({
-                    "offset": chunk.get("offset", 0),
-                    "duration": chunk.get("duration", 0),
-                    "text": chunk.get("text", "")
-                })
+        try:
+            async for chunk in communicate.stream():
+                if chunk["type"] == "audio":
+                    audio_buffer.write(chunk["data"])
+                elif chunk["type"] == "WordBoundary":
+                    viseme_events.append({
+                        "offset": chunk.get("offset", 0),
+                        "duration": chunk.get("duration", 0),
+                        "text": chunk.get("text", "")
+                    })
+        except Exception as e:
+            logger.warning(f"Edge TTS stream notice: {e}")
 
         return audio_buffer.getvalue(), viseme_events
 
